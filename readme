@@ -1,0 +1,10 @@
+#To be updated gradually
+
+ARM emulator in java.
+
+This program is to simulate the behaviors of an ARM processor in that it can read and execute programs written in 32-bit
+ARM assembly code.
+
+PURPOSE:  The final product is meant as an instructional aid for college level courses that involve ARM assembly.
+FUNCTION:  The final product will use a GUI to display the handling of the different assembly instructions during
+execution
