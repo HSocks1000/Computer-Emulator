@@ -33,6 +33,13 @@ public class CPU {
                 rm = inst.getRm();
                 registers[rd] = registers[rn] + registers[rm];
                 break;
+            case SUB: //subtract
+                rd = inst.getRd();
+                rn = inst.getRn();
+                rm = inst.getRm();
+                registers[rd] = registers[rn] - registers[rm];
+                break;
+
             case SDR:
                 rd = inst.getRd();
                 rn = inst.getRn();
