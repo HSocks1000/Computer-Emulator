@@ -1,7 +1,13 @@
+package main;
+
 import java.util.HashMap;
 import java.util.Map;
+import main.MemType;
+import main.MemWd;
+import main.MemWdData;
+import main.MemWdInst;
 
-public class Memory {
+public class CpuMemory {
     /**
      * memory is simulator's main memory
      */
@@ -13,7 +19,7 @@ public class Memory {
     private Map<String,MemWd> labels = new HashMap<>();
 
 
-    public Memory() {
+    public CpuMemory() {
         for (int i = 0; i < memory.length; i++)
             memory[i] = new MemWdData(i*4, "0");
     }

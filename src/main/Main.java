@@ -1,4 +1,4 @@
-import java.util.Arrays;
+package main;
 
 public class Main {
 
@@ -58,7 +58,7 @@ public class Main {
          *
          * The program is loaded into memory addresses 100 through 112
          */
-        Memory mainMemory = new Memory();
+        CpuMemory mainMemory = new CpuMemory();
         CPU cpu = new CPU();
         mainMemory.setMemory(0, MemType.DATA, "10");
         mainMemory.setMemory(4, MemType.DATA, "15");
@@ -68,14 +68,14 @@ public class Main {
         mainMemory.setMemory(108, MemType.INST, "   ADD r7,r5,r6");
         mainMemory.setMemory(112, MemType.INST, "   SDR r7, [r10, #8]");
 
-        cpu.setRegister(CPU.PC, 100); // point pc to program
-        cpu.step(mainMemory);
+        CPU.instance().setRegister(CPU.PC, 100); // point pc to program
+        CPU.instance().step(mainMemory);
         System.out.println("r5: " + cpu.getRegister(5));
-        cpu.step(mainMemory);
+        CPU.instance().step(mainMemory);
         System.out.println("r6: " + cpu.getRegister(6));
-        cpu.step(mainMemory);
+        CPU.instance().step(mainMemory);
         System.out.println("r7: " + cpu.getRegister(7));
-        cpu.step(mainMemory);
+        CPU.instance().step(mainMemory);
         System.out.println(mainMemory.getMemory(8));
 
     }

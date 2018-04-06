@@ -1,6 +1,7 @@
-import java.util.Arrays;
+
 package main;
 
+import java.util.Arrays;
 
 public class StatFlags{
     private boolean negFlag;
