@@ -1,4 +1,4 @@
-package main;
+//package main;
 
 import javafx.stage.WindowEvent;
 import javax.swing.*;
@@ -21,6 +21,10 @@ public class parser {
         Desktop desktop = Desktop.getDesktop();
         desktop.open(file);
         */
+        int test = 0;
+        int test2 = 1;
+        int test3 = test & test2;
+        System.out.print(test3);
         JFrame myFrame = new JFrame("Pick File");
         myFrame.setSize(500, 500);
         myFrame.setLayout(new GridLayout(3, 1));
