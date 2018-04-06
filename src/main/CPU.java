@@ -46,6 +46,22 @@ public class CPU {
                 immediate = inst.getLdrStrImmediate();
                 m.setMemory(registers[rn] + immediate, MemType.Data, ""
                         + registers[rd]);
+                break;
+            case AND:
+                rd= inst.getRd();
+                rn = inst.getRn();
+                rm = inst.getRm();
+                registers[rd] = registers[rn] & registers[rm];
+                break;
+
+            case BIC: //Bit Clear
+                rd= inst.getRd();
+                rn = inst.getRn();
+                rm = inst.getRm();
+                //registers[rd] = registers[rn] !& registers[rm];
+                registers[rd] = registers[rn] !& registers[rm];
+                break;
+                
         }
     }
     public int getRegister(int register)
