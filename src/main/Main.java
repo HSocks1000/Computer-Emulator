@@ -36,6 +36,8 @@ public class Main {
         System.out.println(ins.getOpCode() + " " + ins.getCondCode() + " " + ins.isSetConditionCodes() + "\n\n");
         System.out.println(ins);
 
+       // StatFlags.instance().getcarryFlag();
+
         ins = new ARMInst("   ADD r4,r5,r6");
         System.out.println(ins);
 
