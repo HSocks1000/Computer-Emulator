@@ -40,7 +40,14 @@ public class CPU {
                 registers[rd] = registers[rn] - registers[rm];
                 break;
 
-            case SDR:
+            case RSB: //reverse subtract
+                rd = inst.getRd();
+                rn = inst.getRn();
+                rm = inst.getRm();
+                registers[rd] = registers[rm] - registers[rn];
+                break;
+
+            case SDR: //STR?
                 rd = inst.getRd();
                 rn = inst.getRn();
                 immediate = inst.getLdrStrImmediate();
@@ -61,7 +68,19 @@ public class CPU {
                 //registers[rd] = registers[rn] !& registers[rm];
                 registers[rd] = registers[rn] !& registers[rm];
                 break;
-                
+            case EOR: //Exclusive Or
+                rd = inst.getRd();
+                rn = inst.getRn();
+                rm = inst.getRm();
+                registers[rd] = registers[rn] ^ registers[rm];
+                break;
+            case ORR: //bitwise Or
+                rd = inst.getRd();
+                rn = inst.getRn();
+                rm = inst.getRm();
+                registers[rd] = registers[rn] | registers[rm];
+                break;
+
         }
     }
     public int getRegister(int register)
