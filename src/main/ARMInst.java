@@ -24,6 +24,22 @@ public class ARMInst {
 
     public String inst; //String of instructions to be decoded
 
+    public OpCode getOpCode(){
+        return opcode;
+    }
+    
+    public CondCode getCondCode(){
+        return condcode;
+    }
+    
+    public boolean isSetConditionCodes(){
+        return setConditionCodes;
+    }
+    
+    public String getInst(){
+        return inst;
+    }
+    
     @Override
     public String toString() {
         return "ARMInst{" +
@@ -129,5 +145,21 @@ public class ARMInst {
         }
 
         //throew illegalArgumentException("my illeagl arg exception")
+    }
+
+    public int getRd() {
+        return rd;
+    }
+
+    public int getRn() {
+        return rn;
+    }
+
+    public int getLdrStrImmediate() {
+        return ldrStrImmediate;
+    }
+
+    public int getRm() {
+        return rm;
     }
 }
