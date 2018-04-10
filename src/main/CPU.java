@@ -18,9 +18,10 @@ public class CPU {
 
     public void step(CpuMemory m){
         ARMInst inst = ((MemWdInst)m.getMemory(registers[PC])).getInst();
+        StatFlags instat = StatFlags.instance();
         registers[PC] += 4; // advance the Process Counter to next instruction
         System.out.println(inst);
-        int rd = 0, rn = 0, rm = 0, immediate = 0;
+        int rd = 0, rn = 0, rm = 0, immediate = 0, cpsr = 0;
         switch(inst.getOpCode()) {
             case LDR:
                 rd = inst.getRd();
@@ -87,6 +88,15 @@ public class CPU {
                 registers[rd] = registers[rn] | registers[rm];
                 break;
 
+
+             //cpsr based opcode.
+
+            case CMN: //compare negative
+                //TODO:  Sanity Check this later.
+
+                rn = inst.getRn();
+                rm = inst.getRm();
+                int subtraction = registers[rn] - registers[rm];
         }
     }
     public int getRegister(int register)
