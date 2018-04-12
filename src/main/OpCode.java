@@ -13,7 +13,7 @@ public enum OpCode {
     TST, //
     TEQ, //
     CMP, //
-    CMN, //
+    CMN, // Compare Negative
     ORR, //or: done
     MOV, //
     BIC, //bit clear: Done
