@@ -162,4 +162,8 @@ public class ARMInst {
     public int getRm() {
         return rm;
     }
+
+    public boolean isImmed() { return immediate; }
+
+    public int getImmedVal() { return immediateValue; }
 }

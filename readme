@@ -1,5 +1,7 @@
 #To be updated gradually
 
+ARMULATOR
+
 ARM emulator in java.
 
 This program is to simulate the behaviors of an ARM processor in that it can read and execute programs written in 32-bit

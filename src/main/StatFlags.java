@@ -29,13 +29,24 @@ public class StatFlags{
       return carryFlag;
     }
 
-    public void setFlags(boolean negFlag, boolean zeroFlag, boolean overflowFlag, boolean carryFlag){
+   /* public void setFlags(boolean negFlag, boolean zeroFlag, boolean overflowFlag, boolean carryFlag){
       this.negFlag = negFlag;
       this.zeroFlag = zeroFlag;
       this.overflowFlag = overflowFlag;
       this.carryFlag = carryFlag;
     }
-
-
+*/
+    public void setnegFlag(boolean negFlag){
+        this.negFlag = negFlag;
+    }
+    public void setzeroFlag(boolean zeroFlag){
+        this.zeroFlag = zeroFlag;
+    }
+    public void setoverflowFlag(boolean overflowFlag){
+        this.overflowFlag = overflowFlag;
+    }
+    public void setcarryFlag(boolean carryFlag){
+        this.carryFlag = carryFlag;
+    }
 
 }
