@@ -1,4 +1,4 @@
-//package main;
+package main;
 
 import javafx.stage.WindowEvent;
 import javax.swing.*;

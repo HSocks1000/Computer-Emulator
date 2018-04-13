@@ -34,26 +34,40 @@ public class CPU {
                 break;
 
             case ADD:
-                // todo - update so ADD processes second operand correctly,
-                // including shifts and rotates
-
                 rd = inst.getRd();
                 rn = inst.getRn();
                 rm = inst.getRm();
-                registers[rd] = registers[rn] + registers[rm];
+                if(inst.isImmed()) {
+                    registers[rd] = registers[rn] + inst.getImmedVal();
+                }
+                else {
+                    registers[rd] = registers[rn] + registers[rm];
+                }
                 break;
+
             case SUB: //subtract
                 rd = inst.getRd();
                 rn = inst.getRn();
                 rm = inst.getRm();
-                registers[rd] = registers[rn] - registers[rm];
+                if(inst.isImmed()) {
+                    registers[rd] = registers[rn] - inst.getImmedVal();
+                }
+                else {
+                    registers[rd] = registers[rn] - registers[rm];
+                }
                 break;
 
             case RSB: //reverse subtract
                 rd = inst.getRd();
                 rn = inst.getRn();
                 rm = inst.getRm();
-                registers[rd] = registers[rm] - registers[rn];
+                // TODO: Double check this is how immediate is implemented
+                if(inst.isImmed()) {
+                    registers[rd] = inst.getImmedVal() - registers[rn];
+                }
+                else {
+                    registers[rd] = registers[rm] - registers[rn];
+                }
                 break;
 
             case SDR: //STR?
@@ -67,7 +81,12 @@ public class CPU {
                 rd= inst.getRd();
                 rn = inst.getRn();
                 rm = inst.getRm();
-                registers[rd] = registers[rn] & registers[rm];
+                if(inst.isImmed()) {
+                    registers[rd] = registers[rn] & inst.getImmedVal();
+                }
+                else {
+                    registers[rd] = registers[rm] & registers[rn];
+                }
                 break;
 
             case BIC: //Bit Clear
@@ -75,18 +94,34 @@ public class CPU {
                 rn = inst.getRn();
                 rm = inst.getRm();
                 //registers[rd] = registers[rn] !& registers[rm];
-                registers[rd] = ~(registers[rn] & registers[rm]);
+                if(inst.isImmed()) {
+                    registers[rd] = ~(registers[rn] & inst.getImmedVal());
+                }
+                else {
+                    registers[rd] = ~(registers[rn] & registers[rm]);
+                }
                 break;
             case EOR: //Exclusive Or
                 rd = inst.getRd();
                 rn = inst.getRn();
                 rm = inst.getRm();
-                registers[rd] = registers[rn] ^ registers[rm];
+                if(inst.isImmed()) {
+                    registers[rd] = registers[rn] ^ inst.getImmedVal();
+                }
+                else {
+                    registers[rd] = registers[rn] ^ registers[rm];
+                }
                 break;
             case ORR: //bitwise Or
                 rd = inst.getRd();
                 rn = inst.getRn();
                 rm = inst.getRm();
+                if(inst.isImmed()) {
+                    registers[rd] = registers[rn] | inst.getImmedVal();
+                }
+                else {
+                    registers[rd] = registers[rn] | registers[rm];
+                }
                 registers[rd] = registers[rn] | registers[rm];
                 break;
 
@@ -94,18 +129,81 @@ public class CPU {
              //cpsr based opcode.
 
             case CMN: //compare negative
-                //TODO:  Sanity Check this later.
+                //TODO:  Sanity Check this later, add on other flags
 
                 rn = inst.getRn();
                 rm = inst.getRm();
-                int subtraction = registers[rn] - registers[rm];
-                if (subtraction < 0){
+                int resultCMN;
+                if(inst.isImmed()){
+                    resultCMN = registers[rn] - inst.getImmedVal();
+                }
+                else {
+                    resultCMN = registers[rn] - registers[rm];
+                }
+                if (resultCMN < 0) {
                     instat.setnegFlag(true);
                 }
-                if(subtraction ==0){
+                else {
+                    instat.setnegFlag(false);
+                }
+                if (resultCMN == 0) {
                     instat.setzeroFlag(true);
                 }
-                //if(subtraction )
+                else {
+                    instat.setnegFlag(false);
+                }
+                break;
+
+            case CMP: //compare negative
+                //TODO:  Sanity Check this later, add on other flags
+
+                rn = inst.getRn();
+                rm = inst.getRm();
+                int resultCMP;
+                if(inst.isImmed()){
+                    resultCMP = registers[rn] + inst.getImmedVal();
+                }
+                else {
+                    resultCMP = registers[rn] + registers[rm];
+                }
+                if (resultCMP < 0) {
+                    instat.setnegFlag(true);
+                }
+                else {
+                    instat.setnegFlag(false);
+                }
+                if (resultCMP == 0) {
+                    instat.setzeroFlag(true);
+                }
+                else {
+                    instat.setnegFlag(false);
+                }
+                break;
+
+            case MOV:
+
+                rd = inst.getRd();
+                rm = inst.getRm();
+                if(inst.isImmed()) {
+                    registers[rd] = registers[rm];
+                }
+                else {
+                    registers[rd] = inst.getImmedVal();
+                }
+                break;
+
+            case MVN:
+
+                rd = inst.getRd();
+                rm = inst.getRm();
+                if(inst.isImmed()) {
+                    registers[rd] = ~(registers[rm]);
+                }
+                else {
+                    registers[rd] = ~(inst.getImmedVal());
+                }
+                break;
+                //if(resultCMN )
         }
     }
     public int getRegister(int register)

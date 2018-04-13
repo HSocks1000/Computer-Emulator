@@ -12,12 +12,12 @@ public enum OpCode {
     RSC, //
     TST, //
     TEQ, //
-    CMP, //
-    CMN, // Compare Negative
+    CMP, // Compare Positive: Halfway Done
+    CMN, // Compare Negative: Halfway Done
     ORR, //or: done
-    MOV, //
+    MOV, // Move: Done
     BIC, //bit clear: Done
-    MVN, //
+    MVN, // Move Negated: Done
     LDR, //Done
     SDR  //Done
 
