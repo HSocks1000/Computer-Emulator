@@ -2,7 +2,7 @@ package main;
 //Executing Condition Code
 
 
-import static main.CondCode.EQ;
+//import static main.CondCode.EQ;
 
 public class ExeCond {
 
@@ -23,10 +23,10 @@ public class ExeCond {
     private boolean condLE;
     private boolean condAL;*/
 
-    private static ExeCond execond = new ExeCond();
+    private static ExeCond exeCond = new ExeCond();
 
     public static ExeCond instance(){
-        return execond;
+        return exeCond;
     }
 
 
