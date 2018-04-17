@@ -135,10 +135,10 @@ public class CPU {
                 rm = inst.getRm();
                 int resultCMN;
                 if(inst.isImmed()){
-                    resultCMN = registers[rn] - inst.getImmedVal();
+                    resultCMN = registers[rn] + inst.getImmedVal();
                 }
                 else {
-                    resultCMN = registers[rn] - registers[rm];
+                    resultCMN = registers[rn] + registers[rm];
                 }
                 if (resultCMN < 0) {
                     instat.setnegFlag(true);
@@ -161,10 +161,10 @@ public class CPU {
                 rm = inst.getRm();
                 int resultCMP;
                 if(inst.isImmed()){
-                    resultCMP = registers[rn] + inst.getImmedVal();
+                    resultCMP = registers[rn] - inst.getImmedVal();
                 }
                 else {
-                    resultCMP = registers[rn] + registers[rm];
+                    resultCMP = registers[rn] - registers[rm];
                 }
                 if (resultCMP < 0) {
                     instat.setnegFlag(true);
