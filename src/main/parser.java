@@ -40,5 +40,7 @@ public class parser {
             String temp = chooser.getSelectedFile().getName();
             System.out.print(temp);
         }
+
+        
     }
 }
