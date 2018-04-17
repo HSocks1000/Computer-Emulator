@@ -5,7 +5,9 @@ package main;
 import static main.CondCode.EQ;
 
 public class ExeCond {
-    private boolean condEQ;
+
+    // Dont think we need these
+    /*private boolean condEQ;
     private boolean condNE;
     private boolean condCS;
     private boolean condCC;
@@ -19,7 +21,7 @@ public class ExeCond {
     private boolean condLT;
     private boolean condGT;
     private boolean condLE;
-    private boolean condAL;
+    private boolean condAL;*/
 
     private static ExeCond execond = new ExeCond();
 
