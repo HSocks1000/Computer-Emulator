@@ -152,6 +152,29 @@ public class CPU {
                 else {
                     instat.setnegFlag(false);
                 }
+                long testLong = registers[rn] + registers[rm];
+                if (resultCMN != testLong){
+                    instat.setcarryFlag(true);
+                }
+                else {
+                    instat.setcarryFlag(false);
+                }
+                if ((registers[rn] > 0) && (registers[rm] > 0)) {
+                    if (resultCMN < 0) {
+                        instat.setoverflowFlag(true);
+                    }
+                    else {
+                        instat.setoverflowFlag(false);
+                    }
+                }
+                else if ((registers[rn] < 0) && (registers[rm] < 0)) {
+                    if (resultCMN > 0) {
+                        instat.setoverflowFlag(true);
+                    }
+                    else {
+                        instat.setoverflowFlag(false);
+                    }
+                }
                 break;
 
             case CMP: //compare negative

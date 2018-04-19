@@ -37,7 +37,7 @@ public class parser {
         JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(myFrame);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            String temp = chooser.getSelectedFile().getName();
+            String temp = chooser.getSelectedFile().getAbsolutePath();
             System.out.print(temp);
         }
 
