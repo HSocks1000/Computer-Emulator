@@ -6,6 +6,7 @@ public class ARMInst {
     private String label; //Instructions label
     private OpCode opcode;
     private CondCode condcode;
+    private boolean isBranch;
 
     //setConditionCodes == true: updates instructions in CPSR
 
@@ -87,6 +88,20 @@ public class ARMInst {
         System.out.println(label + " " + Arrays.toString(instParts));
 
         String code = instParts[0];
+        // Add in support to decode branch
+        if(code.equals("B")) {
+            isBranch = true;
+            condcode = null;
+            label = instParts[1];
+        }
+        // Check if opcode is BIC, and that there is no second operand
+        else if(!(code.equals("BIC")) && (instParts.length == 2)) {
+            isBranch = true;
+            condcode = condcode.valueOf(code.substring(1,2));
+            label = instParts[1];
+        }
+
+
         if(code.length() == 6 || code.length() == 4){ //has something like SUBEQS or SUBS
             setConditionCodes = true;
             code = code.substring(0, code.length() - 1);
